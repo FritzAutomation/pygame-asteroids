@@ -11,6 +11,10 @@ def main():
     # Set up the screen (window)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
+    # Set up the clock for controlling FPS
+    clock = pygame.time.Clock()
+    dt = 0  # Delta time in seconds, initialized to 0
+
     # Game loop
     while True:
         # Handle events
@@ -23,6 +27,9 @@ def main():
         
         # Refresh the screen
         pygame.display.flip()
+
+        # Cap the frame rate to 60 FPS and calculate delta time
+        dt = clock.tick(60) / 1000  # Returns time in milliseconds, convert to seconds
 
 if __name__ == "__main__":
     main()
