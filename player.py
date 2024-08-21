@@ -23,6 +23,20 @@ class Player(CircleShape):
         c = self.position - forward * self.radius + right
         return [a, b, c]
 
+    def rotate(self, dt, direction):
+        # Rotate the player by PLAYER_TURN_SPEED * dt * direction
+        self.rotation += PLAYER_TURN_SPEED * dt * direction
+
+    def update(self, dt):
+        # Get key presses
+        keys = pygame.key.get_pressed()
+
+        # Rotate left (a key) or right (d key)
+        if keys[pygame.K_a]:
+            self.rotate(dt, -1)  # Invert dt for left rotation
+        if keys[pygame.K_d]:
+            self.rotate(dt, 1)   # Positive dt for right rotation
+
     def draw(self, screen):
         # Draw the player as a triangle on the screen
         pygame.draw.polygon(screen, "white", self.triangle(), 2)

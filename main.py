@@ -26,6 +26,9 @@ def main():
             if event.type == pygame.QUIT:
                 return  # Exit the game loop if the window is closed
 
+        # Update the player based on user input
+        player.update(dt)
+
         # Fill the screen with black color (RGB: 0, 0, 0)
         screen.fill((0, 0, 0))
 
