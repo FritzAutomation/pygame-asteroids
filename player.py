@@ -1,15 +1,21 @@
 import pygame
 from constants import *
 
-class CircleShape:
+class CircleShape(pygame.sprite.Sprite):
     def __init__(self, radius):
+        super().__init__()  # Initialize the sprite
         self.radius = radius
 
 class Player(CircleShape):
+    containers = ()  # This will be filled by the groups in main.py
+
     def __init__(self, x, y):
         # Call the parent class's constructor
         super().__init__(PLAYER_RADIUS)
         
+        # Add the player to the specified groups
+        self.add(*self.containers)
+
         # Initialize position and rotation
         self.position = pygame.Vector2(x, y)
         self.rotation = 0
